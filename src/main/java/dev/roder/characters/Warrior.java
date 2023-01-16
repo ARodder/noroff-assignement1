@@ -25,12 +25,15 @@ public class Warrior extends Hero{
 
     @Override
     public void levelup() {
+        setLevel(getLevel()+1);
         getAttributes().add(3,2,1);
     }
-    @Override
-    public double damage() {
+
+    public double damage(){
         Weapon weapon = (Weapon) getEquipment().get(SlotType.Weapon);
-        if(weapon == null) return 1*(1+getAttributes().getStrength()/100);
-        return weapon.getWeaponDamage()*(1+getAttributes().getStrength()/100);
+        double mainStat = getAttributes().getStrength();
+        if(weapon == null) return 1.0+mainStat/100.0d;
+        return weapon.getWeaponDamage()*(1.0+mainStat/100.0d);
     }
+
 }

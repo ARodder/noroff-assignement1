@@ -19,6 +19,7 @@ class MageTest {
         assertEquals(1,mage.getAttributes().getDexterity());
         assertEquals(8,mage.getAttributes().getIntelligence());
         mage.levelup();
+        //Post-level test.
         assertEquals(2,mage.getAttributes().getStrength());
         assertEquals(2,mage.getAttributes().getDexterity());
         assertEquals(13,mage.getAttributes().getIntelligence());

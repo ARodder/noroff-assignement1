@@ -22,14 +22,16 @@ public class Ranger extends Hero{
 
     @Override
     public void levelup() {
+        setLevel(getLevel()+1);
         getAttributes().add(1,5,1);
     }
 
     @Override
     public double damage() {
         Weapon weapon = (Weapon) getEquipment().get(SlotType.Weapon);
-        if(weapon == null) return 1*(1+getAttributes().getDexterity()/100);
-        return weapon.getWeaponDamage()*(1+getAttributes().getDexterity()/100);
+        double mainStat = getAttributes().getDexterity();
+        if(weapon == null) return 1+mainStat/100;
+        return weapon.getWeaponDamage()*(1+mainStat/100);
     }
 
 }

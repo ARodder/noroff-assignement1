@@ -30,8 +30,9 @@ public class Mage extends Hero{
     @Override
     public double damage() {
         Weapon weapon = (Weapon) getEquipment().get(SlotType.Weapon);
-        if(weapon == null) return 1*(1+getAttributes().getIntelligence()/100);
-        return weapon.getWeaponDamage()*(1+getAttributes().getIntelligence()/100);
+        double mainStat = getAttributes().getIntelligence();
+        if(weapon == null) return 1.0d+mainStat/100;
+        return weapon.getWeaponDamage()*(1.0d+mainStat/100);
     }
 
 

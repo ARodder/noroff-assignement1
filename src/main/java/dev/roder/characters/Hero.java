@@ -23,6 +23,15 @@ public abstract class Hero {
     private ArrayList<WeaponType> validWeaponTypes;
     private ArrayList<ArmorType> validArmorTypes;
 
+    /**
+     * Constructs a hero with all the fields that may differ between classes.
+     * @param name name of the hero.
+     * @param strength strength stat.
+     * @param dexterity dexterity stat.
+     * @param intelligence intelligence stat.
+     * @param validWeaponTypes valid weapons for hero.
+     * @param validArmorTypes valid armor for hero.
+     */
     public Hero(String name, int strength, int dexterity, int intelligence, ArrayList<WeaponType> validWeaponTypes, ArrayList<ArmorType> validArmorTypes) {
         this.name = name;
         this.level = 1;
@@ -47,7 +56,7 @@ public abstract class Hero {
      */
     public void equip(Weapon newWeapon) throws InvalidWeaponException {
         if(!this.validWeaponTypes.contains(newWeapon.getWeaponType())) throw new InvalidWeaponException("The type of weapon can not be used on this type of hero");
-        if(this.level >= newWeapon.getRequiredLevel()) throw new InvalidWeaponException("Your hero is not high enough level for this weapon yet");
+        if(!(this.level >= newWeapon.getRequiredLevel())) throw new InvalidWeaponException("Your hero is not high enough level for this weapon yet");
         equipment.put(SlotType.Weapon,newWeapon);
 
     }
@@ -71,14 +80,13 @@ public abstract class Hero {
         }
     }
 
-    //TODO:Calculate total damage done by hero.
+
     /**
      * Calculates the damage done by the Hero.
      * @return Total damage done by the hero.
      */
     public abstract double damage();
 
-    //TODO: Add  logic to calculate total attributes of hero
 
     /**
      * Calculates the total attributes of a hero.
@@ -101,13 +109,18 @@ public abstract class Hero {
      */
 
     public String display() {
+        //Determines the name of the hero's class based on the java-class.
+        // Use substring to not get the entire package.
+        String heroClass = this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".")+1);
 
             StringBuilder builder = new StringBuilder();
             builder.append("Name: " +this.name+ "\n");
+            builder.append("Class: "+ heroClass+"\n");
             builder.append("Level: "+ this.level+"\n");
-            builder.append("Total damage: " + damage());
             builder.append("Total attributes: \n" + totalAttributes().toString());
+            builder.append("Total damage: " + damage()+"\n");
             builder.append("Equipment: \n");
+            //Each equipment-slot requires a null-check before it is used in the display.
             builder.append("     Weapon: "+(equipment.get(SlotType.Weapon) == null ? "none" :equipment.get(SlotType.Weapon).getName())+"\n");
             builder.append("     Head: "+ (equipment.get(SlotType.Head) == null ? "none" : equipment.get(SlotType.Head).getName())+"\n");
             builder.append("     Body: "+(equipment.get(SlotType.Body) == null ? "none" : equipment.get(SlotType.Body).getName())+"\n");
