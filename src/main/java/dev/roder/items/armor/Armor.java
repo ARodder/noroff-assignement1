@@ -10,6 +10,14 @@ public class Armor extends Equipable {
     private ArmorType armorType;
     private HeroAttribute armorAttribute;
 
+    /**
+     * Creates a piece of armor
+     * @param name name of the armor-
+     * @param slot which slot the armor is for.
+     * @param requiredLevel required level to use the piece of armor.
+     * @param armorType the type of armor.
+     * @param armorAttribute the attributes from the armor.
+     */
     public Armor(String name, SlotType slot, int requiredLevel,ArmorType armorType,HeroAttribute armorAttribute) {
         super(name, slot, requiredLevel);
         this.armorType = armorType;

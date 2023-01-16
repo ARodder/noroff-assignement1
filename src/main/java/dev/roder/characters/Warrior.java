@@ -11,7 +11,10 @@ import java.util.List;
 
 public class Warrior extends Hero{
 
-
+    /**
+     * Creates a new hero of type Warrior.
+     * @param name name of the new hero.
+     */
     public Warrior(String name) {
 
         super(name,
@@ -23,12 +26,19 @@ public class Warrior extends Hero{
                 );
     }
 
+    /**
+     * Levels hero up with the correct attribute increases.
+     */
     @Override
     public void levelup() {
         setLevel(getLevel()+1);
         getAttributes().add(3,2,1);
     }
 
+    /**
+     * Calculates the damage of the hero, both with and without a weapon.
+     * @return total damage of the hero.
+     */
     public double damage(){
         Weapon weapon = (Weapon) getEquipment().get(SlotType.Weapon);
         double mainStat = totalAttributes().getStrength();

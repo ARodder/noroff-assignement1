@@ -23,6 +23,6 @@ public class Main {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        System.out.println(warrior.display());
+        System.out.println("\u001B[31m"+warrior.display()+"\u001B[31m");
     }
 }

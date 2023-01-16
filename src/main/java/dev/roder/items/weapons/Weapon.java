@@ -8,6 +8,13 @@ public class Weapon extends Equipable {
     private WeaponType weaponType;
     private double weaponDamage;
 
+    /**
+     * Creates a weapon.
+     * @param name name of the weapon.
+     * @param requiredLevel level required to use the weapon.
+     * @param weaponType the type of weapon.
+     * @param weaponDamage damage of the weapon.
+     */
     public Weapon(String name, int requiredLevel,WeaponType weaponType,double weaponDamage) {
         super(name, SlotType.Weapon, requiredLevel);
         this.weaponType = weaponType;

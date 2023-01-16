@@ -3,7 +3,11 @@ package dev.roder.items;
 
 import dev.roder.items.types.SlotType;
 
-public class Equipable {
+/**
+ * Equipable serves as an abstract class containing fields and methods
+ * common for all equipable items.
+ */
+public abstract class Equipable {
     private String name;
     private SlotType slot;
     private int requiredLevel;

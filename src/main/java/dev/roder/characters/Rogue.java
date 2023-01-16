@@ -10,6 +10,10 @@ import java.util.Arrays;
 
 public class Rogue extends Hero{
 
+    /**
+     * Creates a new hero of type Rogue.
+     * @param name name of the new hero.
+     */
     public Rogue(String name) {
         super(name,
                 2,
@@ -20,12 +24,19 @@ public class Rogue extends Hero{
         );
     }
 
+    /**
+     * Levels hero up with the correct attribute increases.
+     */
     @Override
     public void levelup() {
         setLevel(getLevel()+1);
         getAttributes().add(1,4,1);
     }
 
+    /**
+     * Calculates the damage of the hero, both with and without a weapon.
+     * @return total damage of the hero.
+     */
     @Override
     public double damage() {
         Weapon weapon = (Weapon) getEquipment().get(SlotType.Weapon);

@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Ranger extends Hero{
+
+    /**
+     * Creates a new hero of type Ranger.
+     * @param name name of the new hero.
+     */
     public Ranger(String name) {
 
         super(name,
@@ -20,12 +25,19 @@ public class Ranger extends Hero{
         );
     }
 
+    /**
+     * Levels hero up with the correct attribute increases.
+     */
     @Override
     public void levelup() {
         setLevel(getLevel()+1);
         getAttributes().add(1,5,1);
     }
 
+    /**
+     * Calculates the damage of the hero, both with and without a weapon.
+     * @return total damage of the hero.
+     */
     @Override
     public double damage() {
         Weapon weapon = (Weapon) getEquipment().get(SlotType.Weapon);
