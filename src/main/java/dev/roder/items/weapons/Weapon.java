@@ -1,10 +1,10 @@
 package dev.roder.items.weapons;
 
-import dev.roder.items.Equippable;
+import dev.roder.items.Equipable;
 import dev.roder.items.types.SlotType;
 import dev.roder.items.types.WeaponType;
 
-public class Weapon extends Equippable {
+public class Weapon extends Equipable {
     private WeaponType weaponType;
     private double weaponDamage;
 

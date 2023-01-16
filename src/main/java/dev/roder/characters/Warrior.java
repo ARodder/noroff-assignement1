@@ -31,9 +31,9 @@ public class Warrior extends Hero{
 
     public double damage(){
         Weapon weapon = (Weapon) getEquipment().get(SlotType.Weapon);
-        double mainStat = getAttributes().getStrength();
-        if(weapon == null) return 1.0+mainStat/100.0d;
-        return weapon.getWeaponDamage()*(1.0+mainStat/100.0d);
+        double mainStat = totalAttributes().getStrength();
+        if(weapon == null) return 1.0d+mainStat/100.0d;
+        return weapon.getWeaponDamage()*(1.0d+mainStat/100.0d);
     }
 
 }

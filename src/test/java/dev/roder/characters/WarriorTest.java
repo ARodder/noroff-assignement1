@@ -7,28 +7,49 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WarriorTest {
     private Hero warrior;
-
+    /**
+     * Set up new hero before each test starts.
+     */
     @BeforeEach
     void setUp() {
         warrior = new Warrior("Galadriel");
     }
-
+    /**
+     * Test that the hero is created with the correct name
+     */
     @Test
-    void heroCreationTest(){
-        System.out.println("Testing hero creation");
-        assertEquals("Galadriel",warrior.getName());
-        assertEquals(1,warrior.getLevel());
-        HeroAttribute rangerAttributes = warrior.totalAttributes();
-        assertEquals(5,rangerAttributes.getStrength());
-        assertEquals(2,rangerAttributes.getDexterity());
-        assertEquals(1,rangerAttributes.getIntelligence());
+    void heroNameTest(){
+        System.out.println("Test hero is created with correct name...");
+        assertEquals("Galadriel", warrior.getName());
     }
 
+    /**
+     * Test that the hero is created with the correct level(1).
+     */
+    @Test
+    void initialLevelTest(){
+        System.out.println("Test initial hero level...");
+        assertEquals(1,warrior.getLevel());
+    }
+
+    /**
+     * Test that the hero is created with the correct attributes(5,2,1).
+     */
+    @Test
+    void initialAttributeTest(){
+        System.out.println("Test initial hero attributes...");
+        HeroAttribute warriorAttributes = warrior.totalAttributes();
+        assertEquals(5,warriorAttributes.getStrength());
+        assertEquals(2,warriorAttributes.getDexterity());
+        assertEquals(1,warriorAttributes.getIntelligence());
+    }
+
+    /**
+     * Test that the hero levels up correctly as rogue.
+     */
     @Test
     void levelup() {
-        assertEquals(5, warrior.getAttributes().getStrength());
-        assertEquals(2, warrior.getAttributes().getDexterity());
-        assertEquals(1, warrior.getAttributes().getIntelligence());
+        System.out.println("Test warrior leveling up...");
         warrior.levelup();
         assertEquals(8, warrior.getAttributes().getStrength());
         assertEquals(4, warrior.getAttributes().getDexterity());

@@ -1,11 +1,11 @@
 package dev.roder.items.armor;
 
 import dev.roder.characters.HeroAttribute;
-import dev.roder.items.Equippable;
+import dev.roder.items.Equipable;
 import dev.roder.items.types.ArmorType;
 import dev.roder.items.types.SlotType;
 
-public class Armor extends Equippable {
+public class Armor extends Equipable {
 
     private ArmorType armorType;
     private HeroAttribute armorAttribute;

@@ -29,7 +29,7 @@ public class Ranger extends Hero{
     @Override
     public double damage() {
         Weapon weapon = (Weapon) getEquipment().get(SlotType.Weapon);
-        double mainStat = getAttributes().getDexterity();
+        double mainStat = totalAttributes().getDexterity();
         if(weapon == null) return 1.0d+mainStat/100.0d;
         return weapon.getWeaponDamage()*(1.0d+mainStat/100.0d);
     }

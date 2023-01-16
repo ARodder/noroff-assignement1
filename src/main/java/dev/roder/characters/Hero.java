@@ -2,7 +2,7 @@ package dev.roder.characters;
 
 import dev.roder.Exceptions.InvalidArmorException;
 import dev.roder.Exceptions.InvalidWeaponException;
-import dev.roder.items.Equippable;
+import dev.roder.items.Equipable;
 import dev.roder.items.armor.Armor;
 import dev.roder.items.types.ArmorType;
 import dev.roder.items.types.SlotType;
@@ -19,7 +19,7 @@ public abstract class Hero {
     private String name;
     private int level;
     private HeroAttribute attributes;
-    private HashMap<SlotType,Equippable> equipment;
+    private HashMap<SlotType, Equipable> equipment;
     private ArrayList<WeaponType> validWeaponTypes;
     private ArrayList<ArmorType> validArmorTypes;
 
@@ -155,11 +155,11 @@ public abstract class Hero {
         this.attributes = attributes;
     }
 
-    public HashMap<SlotType, Equippable> getEquipment() {
+    public HashMap<SlotType, Equipable> getEquipment() {
         return equipment;
     }
 
-    public void setEquipment(HashMap<SlotType, Equippable> equipment) {
+    public void setEquipment(HashMap<SlotType, Equipable> equipment) {
         this.equipment = equipment;
     }
 }
