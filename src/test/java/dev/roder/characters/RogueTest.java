@@ -10,7 +10,18 @@ class RogueTest {
 
     @BeforeEach
     void setUp() {
-        rogue = new Rogue("Rogue1");
+        rogue = new Rogue("Ferrin");
+    }
+
+    @Test
+    void heroCreationTest(){
+        System.out.println("Testing hero creation");
+        assertEquals("Ferrin",rogue.getName());
+        assertEquals(1,rogue.getLevel());
+        HeroAttribute rangerAttributes = rogue.totalAttributes();
+        assertEquals(2,rangerAttributes.getStrength());
+        assertEquals(6,rangerAttributes.getDexterity());
+        assertEquals(1,rangerAttributes.getIntelligence());
     }
 
     @Test

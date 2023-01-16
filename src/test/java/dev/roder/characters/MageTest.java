@@ -9,7 +9,19 @@ class MageTest {
     private Hero mage;
     @BeforeEach
     void setUp() {
-        mage = new Mage("Mage1");
+        mage = new Mage("Gandalf");
+    }
+
+    @Test
+    void heroCreationTest(){
+        System.out.println("Testing hero creation");
+        assertEquals("Gandalf",mage.getName());
+        assertEquals(1,mage.getLevel());
+        HeroAttribute rangerAttributes = mage.totalAttributes();
+        assertEquals(1,rangerAttributes.getStrength());
+        assertEquals(1,rangerAttributes.getDexterity());
+        assertEquals(8,rangerAttributes.getIntelligence());
+
     }
 
     @Test

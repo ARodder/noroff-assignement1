@@ -11,7 +11,19 @@ class RangerTest {
 
     @BeforeEach
     void setUp() {
-        ranger = new Ranger("Ranger1");
+        ranger = new Ranger("Legolas");
+    }
+
+    @Test
+    void rangerCreationTest(){
+        System.out.println("Testing hero creation");
+        assertEquals("Legolas",ranger.getName());
+        assertEquals(1,ranger.getLevel());
+        HeroAttribute rangerAttributes = ranger.totalAttributes();
+        assertEquals(1,rangerAttributes.getStrength());
+        assertEquals(7,rangerAttributes.getDexterity());
+        assertEquals(1,rangerAttributes.getIntelligence());
+
     }
 
     @Test

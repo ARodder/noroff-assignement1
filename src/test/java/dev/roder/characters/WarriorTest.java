@@ -10,7 +10,18 @@ class WarriorTest {
 
     @BeforeEach
     void setUp() {
-        warrior = new Warrior("warrior1");
+        warrior = new Warrior("Galadriel");
+    }
+
+    @Test
+    void heroCreationTest(){
+        System.out.println("Testing hero creation");
+        assertEquals("Galadriel",warrior.getName());
+        assertEquals(1,warrior.getLevel());
+        HeroAttribute rangerAttributes = warrior.totalAttributes();
+        assertEquals(5,rangerAttributes.getStrength());
+        assertEquals(2,rangerAttributes.getDexterity());
+        assertEquals(1,rangerAttributes.getIntelligence());
     }
 
     @Test
