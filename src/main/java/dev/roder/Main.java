@@ -12,17 +12,7 @@ import dev.roder.items.weapons.Weapon;
 
 public class Main {
     public static void main(String[] args) {
-        Hero mage = new Mage("Gandalf The Grey");
-        Hero warrior = new Warrior("Galadriel");
-        Armor helm = new HeadArmor("Grey Magic Hat",50, ArmorType.Cloth, new HeroAttribute(3,3,10));
-        Weapon staff = new Weapon("Gandalf's staff",99, WeaponType.Staff,50);
-        //for(int i=1;i<50;i++)warrior.levelup();
-        try{
-            //mage.equip(helm);
-            //mage.equip(staff);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        System.out.println("\u001B[31m"+warrior.display()+"\u001B[31m");
+        Engine engine = new Engine();
+        engine.run();
     }
 }

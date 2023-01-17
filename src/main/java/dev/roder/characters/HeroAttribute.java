@@ -56,26 +56,47 @@ public class HeroAttribute {
         this.intelligence += intelligence;
     }
 
+    /**
+     * Retrieves the strength attribute.
+     * @return strength attribute.
+     */
     public int getStrength() {
         return strength;
     }
 
+    /**
+     * Sets the strength attribute.
+     */
     public void setStrength(int strength) {
         this.strength = strength;
     }
 
+    /**
+     * Retrieves the dexterity attribute.
+     * @return dexterity attribute.
+     */
     public int getDexterity() {
         return dexterity;
     }
 
+    /**
+     * Sets the dexterity attribute.
+     */
     public void setDexterity(int dexterity) {
         this.dexterity = dexterity;
     }
 
+    /**
+     * Retrieves the intelligence attribute.
+     * @return intelligence attribute.
+     */
     public int getIntelligence() {
         return intelligence;
     }
 
+    /**
+     * Sets the intelligence attribute.
+     */
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }

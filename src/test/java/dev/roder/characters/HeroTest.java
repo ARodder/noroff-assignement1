@@ -37,7 +37,8 @@ class HeroTest {
         Weapon sword = new Weapon("Great sword", 50, WeaponType.Sword,10);
         //checks that the correct exception is thrown when attempting to equip a weapon with too high levelRequirement.
         assertThrows(InvalidWeaponException.class,()->hero.equip(sword));
-        assertEquals(1.05,hero.damage());
+        //Checks that the weapon didn't get equipped even when the exception was thrown.
+        assertNull(hero.getEquipment().get(SlotType.Weapon));
     }
 
     /**
@@ -49,7 +50,8 @@ class HeroTest {
         Weapon staff = new Weapon("Gandalf's staff", 1,WeaponType.Staff,5);
         //checks that the correct exception is thrown when attempting to equip wrong weaponType.
         assertThrows(InvalidWeaponException.class,()-> hero.equip(staff));
-        assertEquals(1.05,hero.damage());
+        //Checks that the weapon didn't get equipped even when the exception was thrown.
+        assertNull(hero.getEquipment().get(SlotType.Weapon));
     }
 
 
@@ -106,7 +108,8 @@ class HeroTest {
         Armor chest = new BodyArmor("Galadriel's chest piece",50,ArmorType.Mail,new HeroAttribute(10,3,2));
         //checks that the correct exception is thrown when attempting to equip an armor piece with too high levelRequirement.
         assertThrows(InvalidArmorException.class,()->hero.equip(chest));
-        assertEquals(1.05,hero.damage());
+        //Checks that the chest didn't get equipped even when the exception was thrown.
+        assertNull(hero.getEquipment().get(SlotType.Body));
     }
 
     /**
@@ -119,7 +122,8 @@ class HeroTest {
         Armor helm = new HeadArmor("Grey Magic Hat",1, ArmorType.Cloth, new HeroAttribute(3,3,10));
         //checks that the correct exception is thrown when attempting to equip wrong armorType.
         assertThrows(InvalidArmorException.class,()-> hero.equip(helm));
-        assertEquals(1.05,hero.damage());
+        //Checks that the helm didn't get equipped even when the exception was thrown.
+        assertNull(hero.getEquipment().get(SlotType.Head));
     }
 
     /**
@@ -205,6 +209,7 @@ class HeroTest {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
+        //Checking that all the heroAttributes are correct.
         HeroAttribute totalAttributes = hero.totalAttributes();
         assertEquals(8,totalAttributes.getStrength());
         assertEquals(5,totalAttributes.getDexterity());

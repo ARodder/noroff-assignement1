@@ -23,19 +23,32 @@ public class Armor extends Equipable {
         this.armorType = armorType;
         this.armorAttribute = armorAttribute;
     }
-
+    /**
+     * Sets the armorType of the armor piece.
+     */
     public void setArmorType(ArmorType armorType) {
         this.armorType = armorType;
     }
 
+    /**
+     * Retrieves the attributes of the armor.
+     * @return attributes of the armor
+     */
     public HeroAttribute getArmorAttribute() {
         return armorAttribute;
     }
 
+    /**
+     * Sets the armorAttributes of the armor piece.
+     */
     public void setArmorAttribute(HeroAttribute armorAttribute) {
         this.armorAttribute = armorAttribute;
     }
 
+    /**
+     * Retrieves the type of the armor.
+     * @return type of the armor
+     */
     public ArmorType getArmorType(){
         return armorType;
     }

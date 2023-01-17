@@ -23,6 +23,10 @@ public abstract class Hero {
     private ArrayList<WeaponType> validWeaponTypes;
     private ArrayList<ArmorType> validArmorTypes;
 
+    //Added fields for optional task.
+    private double maxHealth;
+    private double health;
+
     /**
      * Constructs a hero with all the fields that may differ between classes.
      * @param name name of the hero.
@@ -35,6 +39,8 @@ public abstract class Hero {
     public Hero(String name, int strength, int dexterity, int intelligence, ArrayList<WeaponType> validWeaponTypes, ArrayList<ArmorType> validArmorTypes) {
         this.name = name;
         this.level = 1;
+        this.maxHealth = 10;
+        this.health = maxHealth;
         this.attributes = new HeroAttribute(strength,dexterity,intelligence);
         this.equipment = new HashMap<>();
         equipment.put(SlotType.Weapon,null);
@@ -131,35 +137,104 @@ public abstract class Hero {
 
     }
 
+    /**
+     * Retrieves the name of the hero.
+     * @return name of the hero
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the name of the hero.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Retrieves the level of the hero.
+     * @return level of the hero
+     */
     public int getLevel() {
         return level;
     }
 
+    /**
+     * sets the level of the hero.
+     */
     public void setLevel(int level) {
         this.level = level;
     }
 
+    /**
+     * Retrieves the attributes of the hero.
+     * @return attributes of the hero
+     */
     public HeroAttribute getAttributes() {
         return attributes;
     }
 
+    /**
+     * Sets the attributes of the hero.
+     */
     public void setAttributes(HeroAttribute attributes) {
         this.attributes = attributes;
     }
 
+    /**
+     * Retrieves the equipment of the hero.
+     * @return equipment of the hero
+     */
     public HashMap<SlotType, Equipable> getEquipment() {
         return equipment;
     }
 
+    /**
+     * Sets the attributes of the hero.
+     */
     public void setEquipment(HashMap<SlotType, Equipable> equipment) {
         this.equipment = equipment;
+    }
+
+    /**
+     * Retrieves the health of the hero.
+     * @return health of the hero.
+     */
+    public double getHealth() {
+        return health;
+    }
+
+    /**
+     * Sets the health of the hero.
+     * @param health new health of the hero.
+     */
+    public void setHealth(double health) {
+        if(health>=maxHealth) this.health = maxHealth;
+        else if(health<=0) this.health = 0;
+        else this.health = health;
+    }
+
+    /**
+     * Retrieves the max health of the hero
+     * @return max health of the hero.
+     */
+    public double getMaxHealth() {
+        return maxHealth;
+    }
+
+    /**
+     * Sets the max health of the hero.
+     * @param maxHealth new max health for the hero.
+     */
+    public void setMaxHealth(double maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    /**
+     * Resets the current health of the hero to the max health.
+     */
+    public void resetHealth(){
+        this.health = this.maxHealth;
     }
 }
