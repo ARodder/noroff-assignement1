@@ -2,7 +2,6 @@ package dev.roder;
 
 import dev.roder.characters.*;
 
-import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -10,24 +9,34 @@ public class Engine {
     private Scanner sc;
     private Hero hero;
     private Hero enemy;
+    //For use if the enemy is determined by the current stage.
     private int currentStage;
     private Random random;
 
+    /**
+     * Creates instance of Engine, initializing scanner and random number generator.
+     */
     public Engine(){
         sc = new Scanner(System.in);
         currentStage = 0;
         random = new Random();
     }
 
+    /**
+     * Creates the initial game-loop, and contains main-menu logic.
+     */
     public void run(){
         boolean running = true;
         while(running) {
             switch (initialGameState()) {
                 case 1 -> {
+                    //Starts Character creation.
                     characterCreation();
+                    //Starts the main game loop
                     gameLoop();
                 }
                 case 2 -> {
+                    //Checks if a hero exist, if it does the game continues.
                     if (hero != null) gameLoop();
                     else System.out.println("You have not created a hero, please start with that");
                 }
@@ -39,6 +48,10 @@ public class Engine {
 
     }
 
+    /**
+     * Displays the main menu options and takes the users input choice.
+     * @return users input choice
+     */
     public int initialGameState(){
         System.out.println("----- MAIN MENU -----");
         System.out.println("1.Start New Game");
@@ -47,9 +60,14 @@ public class Engine {
         System.out.println("4.Quit");
         createSpacing();
         System.out.print("Please write the number representing the option: ");
-        return sc.nextInt();
+        int userInput = sc.nextInt();
+        sc.nextLine();
+        return userInput;
     }
 
+    /**
+     * Runs through character creation set up. Choosing class and name.
+     */
     public void characterCreation(){
         while(hero == null){
             System.out.println("Which class do you wish to play?");
@@ -62,11 +80,15 @@ public class Engine {
             int chosenClass = sc.nextInt();
             sc.nextLine();
 
-            choosenHeroLogic(chosenClass);
+            chosenHeroLogic(chosenClass);
         }
     }
 
-    public void choosenHeroLogic(int chosenClass){
+    /**
+     * Initiates the right hero class based on the user input
+     * @param chosenClass user input.
+     */
+    public void chosenHeroLogic(int chosenClass){
         switch (chosenClass) {
             case 1 -> {
                 System.out.print("Chose a name for your hero: ");
@@ -94,6 +116,10 @@ public class Engine {
     }
 
 
+    /**
+     * Main game loop running through, and potentially
+     * initializing the main functions of the game
+     */
     public void gameLoop(){
         System.out.printf("Welcome to the game\u001B[32m %s \u001B[0m\n",hero.getName());
         boolean running = true;
@@ -122,6 +148,9 @@ public class Engine {
         }
     }
 
+    /**
+     * Creates the loop for fighting in the 1v1 battle arena.
+     */
     public void arenaLoop(){
         boolean inBattle = true;
         enemy = new Warrior("Isildur");
@@ -165,54 +194,84 @@ public class Engine {
         hero.resetHealth();
     }
 
+    /**
+     * Applies the battle logic for different attacks and heal.
+     * @param playerChoice the type of attack chosen by the player.
+     */
     public void doCombatAction(int playerChoice){
+        //Determines teh enemy's type of attack
         int enemyChoice = getEnemyChoice();
+        //Probability of hitting a light attack is 75%
         float lightHitProbability = 0.75f;
+        //Probability of hitting a heavy attack is 50%
         float heavyHitProbability = 0.5f;
+        //float used to determine if the hero hits the enemy
         float heroHitPoint = random.nextFloat(0,1);
+        //Float used to determine if the enemy hits the hero
         float enemyHitPoint = random.nextFloat(0,1);
 
+        //If the player chooses attack 1 and is allowed to hit
         if(lightHitProbability>= heroHitPoint && playerChoice == 1){
             enemy.setHealth(enemy.getHealth()-hero.damage());
             System.out.println("You hit "+enemy.getName()+" with a light attack for "+ roundAvoid(hero.damage(),2)+" HP");
+            //If the player chooses attack 3 and is allowed to hit
         }else if(heavyHitProbability>= heroHitPoint && playerChoice == 2){
             enemy.setHealth(enemy.getHealth()-(hero.damage()*1.5));
             System.out.println("You hit "+enemy.getName()+" with a heavy attack for "+ roundAvoid(hero.damage()*1.5,2)+" HP");
+            //If the player choose 3 and is heals
         }else if(playerChoice == 3){
             double healAmnt = random.nextInt(1,3);
             hero.setHealth(hero.getHealth()+healAmnt);
             System.out.println("You heal for "+healAmnt+" HP");
+            //Everything else is a miss
         }else{
             System.out.println("You miss");
         }
 
+        //If the enemy chooses attack 1 and is allowed to hit
         if(lightHitProbability >= enemyHitPoint && enemyChoice == 1){
             hero.setHealth(hero.getHealth()-enemy.damage());
             System.out.println(enemy.getName()+" hits you with a light attack for "+ roundAvoid(enemy.damage(),2)+" HP");
+            //If the enemy chooses attack 2 and is allowed to hit
         }else if(heavyHitProbability >= enemyHitPoint && enemyChoice == 2){
             hero.setHealth(hero.getHealth()-(enemy.damage()*1.5));
             System.out.println(enemy.getName()+" hits you with a heavy attack for "+ roundAvoid(enemy.damage()*1.5,2)+" HP");
+            //If the enemy choose 3 and is heals
         }else if(enemyChoice == 3){
             double healAmnt = random.nextInt(1,3);
             enemy.setHealth(enemy.getHealth()+healAmnt);
             System.out.println(enemy.getName()+" heals for "+healAmnt+" HP");
+            //Everything else is a miss
         }else{
             System.out.println(enemy.getName()+" misses");
         }
     }
 
-
-
+    /**
+     * Generates the attack of the enemy
+     * @return attack of the enemy.
+     */
     public int getEnemyChoice(){
         return random.nextInt(1,4);
     }
 
+    /**
+     * Used to create visual spacing in the console
+     * when playing.
+     */
     public void createSpacing(){
         System.out.println();
         System.out.println();
         System.out.println();
     }
 
+    /**
+     * Utility method to round doubles to a specified
+     * amount of digits behind comma
+     * @param value value to round
+     * @param places amount of digits behind comma
+     * @return rounded number.
+     */
     public double roundAvoid(double value, int places) {
         double scale = Math.pow(10, places);
         return Math.round(value * scale) / scale;
