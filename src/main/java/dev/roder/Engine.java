@@ -31,30 +31,32 @@ public class Engine {
         fillAvailableDrops();
     }
 
-
+    /**
+     * This method fills the availableDrops array with different items
+     * that can be dropped when the player wins a battle.
+     */
     private void fillAvailableDrops() {
-        //Different pieces of head armor.
-        availableDrops.add(new HeadArmor("Common cloth head armor", 1 , ArmorType.Cloth, new HeroAttribute(1, 2, 7)));
-        availableDrops.add(new HeadArmor("Common leather head armor", 1 , ArmorType.Leather, new HeroAttribute(2, 7, 1)));
-        availableDrops.add(new HeadArmor("Common mail head armor", 1 , ArmorType.Mail, new HeroAttribute(8, 1, 1)));
+        // Different pieces of head armor.
+        availableDrops.add(new HeadArmor("Common cloth head armor", 1, ArmorType.Cloth, new HeroAttribute(1, 2, 7)));
+        availableDrops
+                .add(new HeadArmor("Common leather head armor", 1, ArmorType.Leather, new HeroAttribute(2, 7, 1)));
+        availableDrops.add(new HeadArmor("Common mail head armor", 1, ArmorType.Mail, new HeroAttribute(8, 1, 1)));
 
-        //Different pieces of body armor
-        availableDrops.add(new BodyArmor("Common cloth body armor", 1 , ArmorType.Cloth, new HeroAttribute(1, 2, 7)));
-        availableDrops.add(new BodyArmor("Common leather body armor", 1 , ArmorType.Leather, new HeroAttribute(2, 7, 1)));
-        availableDrops.add(new BodyArmor("Common mail body armor", 1 , ArmorType.Mail, new HeroAttribute(8, 1, 1)));
+        // Different pieces of body armor
+        availableDrops.add(new BodyArmor("Common cloth body armor", 1, ArmorType.Cloth, new HeroAttribute(1, 2, 7)));
+        availableDrops
+                .add(new BodyArmor("Common leather body armor", 1, ArmorType.Leather, new HeroAttribute(2, 7, 1)));
+        availableDrops.add(new BodyArmor("Common mail body armor", 1, ArmorType.Mail, new HeroAttribute(8, 1, 1)));
 
-        //Different pieces of leg armor
-        availableDrops.add(new LegArmor("Common cloth leg armor", 1 , ArmorType.Cloth, new HeroAttribute(1, 2, 7)));
-        availableDrops.add(new LegArmor("Common leather leg armor", 1 , ArmorType.Leather, new HeroAttribute(2, 7, 1)));
-        availableDrops.add(new LegArmor("Common mail leg armor", 1 , ArmorType.Mail, new HeroAttribute(8, 1, 1)));
+        // Different pieces of leg armor
+        availableDrops.add(new LegArmor("Common cloth leg armor", 1, ArmorType.Cloth, new HeroAttribute(1, 2, 7)));
+        availableDrops.add(new LegArmor("Common leather leg armor", 1, ArmorType.Leather, new HeroAttribute(2, 7, 1)));
+        availableDrops.add(new LegArmor("Common mail leg armor", 1, ArmorType.Mail, new HeroAttribute(8, 1, 1)));
 
         availableDrops.add(new Weapon("Rotten old staff", 1, WeaponType.Staff, 5));
         availableDrops.add(new Weapon("Rotten old bow", 1, WeaponType.Bow, 5));
         availableDrops.add(new Weapon("Rusty old sword", 1, WeaponType.Sword, 5));
     }
-
-
-
 
     /**
      * This method runs the game loop and controls the flow of the game.
@@ -249,8 +251,8 @@ public class Engine {
         while (inBattle) {
             System.out.println("Your HP [ " + roundAvoid(hero.getHealth(), 2) + "/" + hero.getMaxHealth() + " ]");
             System.out.println("Enemy HP [ " + roundAvoid(enemy.getHealth(), 2) + "/" + enemy.getMaxHealth() + " ]");
-            System.out.println("1. Do a light attack, potentially dealing " + hero.damage() + " damage");
-            System.out.println("2. Do a heavy attack, potentially dealing " + (hero.damage() * 1.5) + " damage");
+            System.out.println("1. Do a light attack, potentially dealing " + roundAvoid(hero.damage(),2) + " damage");
+            System.out.println("2. Do a heavy attack, potentially dealing " + roundAvoid(hero.damage() * 1.5,2) + " damage");
             System.out.println("3. Heal, regaining 1-3 HP");
             System.out.println("4. Forfeit, and give up the win");
             createSpacing();
@@ -275,7 +277,7 @@ public class Engine {
             } else if (enemy.getHealth() == 0) {
                 // victory
                 System.out.println("You won, And leveled up");
-                if(random.nextFloat(0,1)>0.5){
+                if (random.nextFloat(0, 1) > 0.5) {
                     generateDrop();
                 }
                 hero.levelUp();
@@ -318,20 +320,30 @@ public class Engine {
         // Float used to determine if the enemy hits the hero
         float enemyHitPoint = random.nextFloat(0, 1);
 
-        //Applies the logic for the player action
+        // Applies the logic for the player action
         playerAction(playerChoice, lightHitProbability, heavyHitProbability, heroHitPoint);
-        //Applies the logic for the enemy action
+        // Applies the logic for the enemy action
         enemyAction(enemyChoice, lightHitProbability, heavyHitProbability, enemyHitPoint);
     }
 
-
-    private void enemyAction(int enemyChoice, float lightHitProbability, float heavyHitProbability, float enemyHitPoint) {
+    /**
+     * This method handles the enemy's chosen action during a battle.
+     * enemyChoice: the integer representing the enemy's chosen action (1 for
+     * light attack, 2 for heavy attack, 3 for heal)
+     * lightHitProbability: the probability of the enemy successfully hitting with
+     * a light attack
+     * heavyHitProbability: the probability of the enemy successfully hitting with
+     * a heavy attack
+     * heroHitPoint: the current hit points of the enemy's hero
+     */
+    private void enemyAction(int enemyChoice, float lightHitProbability, float heavyHitProbability,
+            float enemyHitPoint) {
         // If the enemy chooses attack 1 and is allowed to hit
         if (lightHitProbability >= enemyHitPoint && enemyChoice == 1) {
             hero.setHealth(hero.getHealth() - enemy.damage());
             System.out.println(
                     enemy.getName() + " hits you with a light attack for " + roundAvoid(enemy.damage(), 2) + " HP");
-            
+
             // If the enemy chooses attack 2 and is allowed to hit
         } else if (heavyHitProbability >= enemyHitPoint && enemyChoice == 2) {
             hero.setHealth(hero.getHealth() - (enemy.damage() * 1.5));
@@ -343,15 +355,25 @@ public class Engine {
             double healAmnt = random.nextInt(1, 3);
             enemy.setHealth(enemy.getHealth() + healAmnt);
             System.out.println(enemy.getName() + " heals for " + healAmnt + " HP");
-            
+
             // Everything else is a miss
         } else {
             System.out.println(enemy.getName() + " misses");
         }
     }
 
-
-    private void playerAction(int playerChoice, float lightHitProbability, float heavyHitProbability, float heroHitPoint) {
+    /**
+     * This method handles the player's chosen action during a battle.
+     * playerChoice: the integer representing the player's chosen action (1 for
+     * light attack, 2 for heavy attack, 3 for heal)
+     * lightHitProbability: the probability of the player successfully hitting with
+     * a light attack
+     * heavyHitProbability: the probability of the player successfully hitting with
+     * a heavy attack
+     * heroHitPoint: the current hit points of the player's hero
+     */
+    private void playerAction(int playerChoice, float lightHitProbability, float heavyHitProbability,
+            float heroHitPoint) {
         // If the player chooses attack 1 and is allowed to hit
         if (lightHitProbability >= heroHitPoint && playerChoice == 1) {
             enemy.setHealth(enemy.getHealth() - hero.damage());
@@ -392,16 +414,16 @@ public class Engine {
         System.out.println();
     }
 
-    private void generateDrop(){
-        try{
-            Equipable newGear = availableDrops.get(random.nextInt(0, 13));
-            System.out.print("Congratulation, you where dropped \u001B[32m"+ newGear.getName()+"\u001B[0m");
-            if(newGear instanceof Armor){
+    private void generateDrop() {
+        try {
+            Equipable newGear = availableDrops.get(random.nextInt(0, availableDrops.size()));
+            System.out.print("Congratulation, you where dropped \u001B[32m" + newGear.getName() + "\u001B[0m");
+            if (newGear instanceof Armor) {
                 hero.equip((Armor) newGear);
-            } else{
+            } else {
                 hero.equip((Weapon) newGear);
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println("\u001B[31m but sadly you cant equip it \u001B[0m");
         }
         System.out.println();
