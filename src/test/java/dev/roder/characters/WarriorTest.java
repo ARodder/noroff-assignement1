@@ -50,7 +50,7 @@ class WarriorTest {
     @Test
     void levelup() {
         System.out.println("Test warrior leveling up...");
-        warrior.levelup();
+        warrior.levelUp();
         assertEquals(8, warrior.getAttributes().getStrength());
         assertEquals(4, warrior.getAttributes().getDexterity());
         assertEquals(2, warrior.getAttributes().getIntelligence());

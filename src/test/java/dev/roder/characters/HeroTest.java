@@ -63,7 +63,7 @@ class HeroTest {
     @Test
     void equipWeaponTest() {
         Weapon sword = new Weapon("Great sword", 50, WeaponType.Sword,10);
-        for(int i =1;i<50;i++)hero.levelup();
+        for(int i =1;i<50;i++)hero.levelUp();
         System.out.println("Attempt equip valid weapon...");
         try{
         hero.equip(sword);
@@ -133,7 +133,7 @@ class HeroTest {
     void equipArmorTest() {
         Armor chest = new BodyArmor("Galadriel's chest piece",50,ArmorType.Mail,new HeroAttribute(10,3,2));
 
-        for(int i =1;i<50;i++)hero.levelup();
+        for(int i =1;i<50;i++)hero.levelUp();
 
         System.out.println("Attempt equip valid weapon...");
         try{

@@ -54,7 +54,7 @@ public abstract class Hero {
     /**
      * Levels up character, abstract since different classes does not level up the same way.
      */
-    public abstract void levelup();
+    public abstract void levelUp();
 
     /**
      * Equips a new weapon if the weapon is a valid weapon for the hero type, nad the hero is at or above the required level.

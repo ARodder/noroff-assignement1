@@ -52,7 +52,7 @@ class RangerTest {
     @Test
     void levelup() {
         System.out.println("Test ranger level up...");
-        ranger.levelup();
+        ranger.levelUp();
         assertEquals(2,ranger.getAttributes().getStrength());
         assertEquals(12,ranger.getAttributes().getDexterity());
         assertEquals(2,ranger.getAttributes().getIntelligence());

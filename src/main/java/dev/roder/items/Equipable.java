@@ -1,6 +1,5 @@
 package dev.roder.items;
 
-
 import dev.roder.items.types.SlotType;
 
 /**
@@ -12,6 +11,14 @@ public abstract class Equipable {
     private SlotType slot;
     private int requiredLevel;
 
+    /**
+     * This is the constructor for the Equipable class.
+     * It takes in 3 parameters and assigns them to the instance variables.
+     * 
+     * @param name          The name of the equipable item
+     * @param slot          The slot type the item can be equipped in
+     * @param requiredLevel the level the player must be to use the item
+     */
     public Equipable(String name, SlotType slot, int requiredLevel) {
         this.name = name;
         this.slot = slot;
@@ -20,6 +27,7 @@ public abstract class Equipable {
 
     /**
      * Retrieves the name of the item.
+     * 
      * @return name of the item.
      */
     public String getName() {
@@ -35,6 +43,7 @@ public abstract class Equipable {
 
     /**
      * Retrieves the slot of the item.
+     * 
      * @return slot of the item
      */
     public SlotType getSlot() {
@@ -50,6 +59,7 @@ public abstract class Equipable {
 
     /**
      * Retrieves the requiredLevel for the item.
+     * 
      * @return requiredLevel of the item
      */
     public int getRequiredLevel() {

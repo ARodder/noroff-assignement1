@@ -52,7 +52,7 @@ class MageTest {
     @Test
     void levelup() {
         System.out.println("Test mage level up...");
-        mage.levelup();
+        mage.levelUp();
         //Post-level test.
         assertEquals(2,mage.getAttributes().getStrength());
         assertEquals(2,mage.getAttributes().getDexterity());

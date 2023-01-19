@@ -52,7 +52,7 @@ class RogueTest {
     @Test
     void levelup() {
         System.out.println("Test rogue leveling up...");
-        rogue.levelup();
+        rogue.levelUp();
         assertEquals(3, rogue.getAttributes().getStrength());
         assertEquals(10, rogue.getAttributes().getDexterity());
         assertEquals(2, rogue.getAttributes().getIntelligence());
