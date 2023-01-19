@@ -36,17 +36,17 @@ public class Engine {
         //Different pieces of head armor.
         availableDrops.add(new HeadArmor("Common cloth head armor", 1 , ArmorType.Cloth, new HeroAttribute(1, 2, 7)));
         availableDrops.add(new HeadArmor("Common leather head armor", 1 , ArmorType.Leather, new HeroAttribute(2, 7, 1)));
-        availableDrops.add(new HeadArmor("Common leather head armor", 1 , ArmorType.Mail, new HeroAttribute(8, 1, 1)));
+        availableDrops.add(new HeadArmor("Common mail head armor", 1 , ArmorType.Mail, new HeroAttribute(8, 1, 1)));
 
         //Different pieces of body armor
         availableDrops.add(new BodyArmor("Common cloth body armor", 1 , ArmorType.Cloth, new HeroAttribute(1, 2, 7)));
         availableDrops.add(new BodyArmor("Common leather body armor", 1 , ArmorType.Leather, new HeroAttribute(2, 7, 1)));
-        availableDrops.add(new BodyArmor("Common leather body armor", 1 , ArmorType.Mail, new HeroAttribute(8, 1, 1)));
+        availableDrops.add(new BodyArmor("Common mail body armor", 1 , ArmorType.Mail, new HeroAttribute(8, 1, 1)));
 
         //Different pieces of leg armor
         availableDrops.add(new LegArmor("Common cloth leg armor", 1 , ArmorType.Cloth, new HeroAttribute(1, 2, 7)));
         availableDrops.add(new LegArmor("Common leather leg armor", 1 , ArmorType.Leather, new HeroAttribute(2, 7, 1)));
-        availableDrops.add(new LegArmor("Common leather leg armor", 1 , ArmorType.Mail, new HeroAttribute(8, 1, 1)));
+        availableDrops.add(new LegArmor("Common mail leg armor", 1 , ArmorType.Mail, new HeroAttribute(8, 1, 1)));
 
         availableDrops.add(new Weapon("Rotten old staff", 1, WeaponType.Staff, 5));
         availableDrops.add(new Weapon("Rotten old bow", 1, WeaponType.Bow, 5));
