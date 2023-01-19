@@ -292,6 +292,7 @@ public class Engine {
 
         }
         hero.resetHealth();
+        enemy.resetHealth();
     }
 
     /**
