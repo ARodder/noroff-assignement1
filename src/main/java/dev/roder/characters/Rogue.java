@@ -46,9 +46,9 @@ public class Rogue extends Hero {
      */
     @Override
     public void levelUp() {
-        setLevel(getLevel() + 1);
-        getAttributes().add(1, 4, 1);
-        setMaxHealth(getMaxHealth() + 5);
+        setLevel(getLevel()+1);
+        getAttributes().add(1,4,1);
+        setMaxHealth(getMaxHealth()+5);
         resetHealth();
     }
 

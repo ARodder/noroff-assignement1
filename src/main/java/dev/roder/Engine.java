@@ -17,6 +17,7 @@ import java.util.Scanner;
 public class Engine {
     private Scanner sc;
     private Hero hero;
+    private ArrayList<Hero> availableEnemies;
     private Hero enemy;
     private Random random;
     private ArrayList<Equipable> availableDrops;
@@ -29,6 +30,12 @@ public class Engine {
         random = new Random();
         availableDrops = new ArrayList<>();
         fillAvailableDrops();
+        availableEnemies = new ArrayList<>();
+        availableEnemies.add(new Mage("Gandalf"));
+        availableEnemies.add(new Rogue("Ferrin"));
+        availableEnemies.add(new Ranger("Legolas"));
+        availableEnemies.add(new Mage("Galadriel"));
+        setEnemyLevels();
     }
 
     /**
@@ -244,9 +251,8 @@ public class Engine {
      */
     public void arenaLoop() {
         boolean inBattle = true;
-        enemy = new Warrior("Isildur");
-        System.out.println("You, \u001B[32m" + hero.getName() + "\u001B[0m are now fighting \u001B[31m"
-                + enemy.getName() + "\u001B[0m");
+        enemy = availableEnemies.get(random.nextInt(0, availableEnemies.size()));
+        System.out.println("You, \u001B[32m"+hero.getName()+"(lvl."+hero.getLevel()+")"+"\u001B[0m are now fighting \u001B[31m"+enemy.getName()+"(lvl."+enemy.getLevel()+")"+"\u001B[0m");
 
         while (inBattle) {
             System.out.println("Your HP [ " + roundAvoid(hero.getHealth(), 2) + "/" + hero.getMaxHealth() + " ]");
@@ -311,14 +317,14 @@ public class Engine {
     public void doCombatAction(int playerChoice) {
         // Determines teh enemy's type of attack
         int enemyChoice = getEnemyChoice();
-        // Probability of hitting a light attack is 75%
-        float lightHitProbability = 0.75f;
-        // Probability of hitting a heavy attack is 50%
-        float heavyHitProbability = 0.5f;
-        // float used to determine if the hero hits the enemy
-        float heroHitPoint = random.nextFloat(0, 1);
-        // Float used to determine if the enemy hits the hero
-        float enemyHitPoint = random.nextFloat(0, 1);
+        //Probability of hitting a light attack is 90%
+        float lightHitProbability = 0.9f;
+        //Probability of hitting a heavy attack is 75%
+        float heavyHitProbability = 0.75f;
+        //float used to determine if the hero hits the enemy
+        float heroHitPoint = random.nextFloat(0,1);
+        //Float used to determine if the enemy hits the hero
+        float enemyHitPoint = random.nextFloat(0,1);
 
         // Applies the logic for the player action
         playerAction(playerChoice, lightHitProbability, heavyHitProbability, heroHitPoint);
@@ -440,5 +446,15 @@ public class Engine {
     public double roundAvoid(double value, int places) {
         double scale = Math.pow(10, places);
         return Math.round(value * scale) / scale;
+    }
+
+    /**
+     * Sets each available enemy to a new random level between 1 and 15.
+     */
+    public void setEnemyLevels(){
+        availableEnemies.forEach((character)-> {
+            int characterLvl = random.nextInt(0,3);
+            for (int i = 0; i <characterLvl;i++) character.levelUp();
+        });
     }
 }
