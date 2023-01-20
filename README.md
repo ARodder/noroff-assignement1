@@ -7,7 +7,7 @@ Clone the application from github with the following command to the host machine
 ```bash
 git clone https://github.com/ARodder/noroff-assignement1.git
 ```
-Then package the game into a jar-file(requires maven installed)
+Then package the game into a jar-file(requires maven and jdk 19 installed)
 ```bash
 mvn package
 ```
