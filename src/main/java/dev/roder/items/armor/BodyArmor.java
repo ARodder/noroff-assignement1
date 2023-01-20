@@ -9,7 +9,7 @@ import dev.roder.items.types.SlotType;
  * It is a subclass of the Armor class and has a constructor that
  * creates an Armor piece with body as the SlotType
  */
-public class BodyArmor extends Armor{
+public class BodyArmor extends Armor {
     /**
      * This is the constructor for the BodyArmor class which is a sub class of
      * Armor.

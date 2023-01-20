@@ -20,4 +20,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Run Unit test
-      run: mvn -B surefire-report:report --file pom.xml
+      run: mvn -B surefire:test --file pom.xml

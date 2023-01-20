@@ -45,9 +45,9 @@ public class Warrior extends Hero {
      */
     @Override
     public void levelUp() {
-        setLevel(getLevel()+1);
-        getAttributes().add(3,2,1);
-        setMaxHealth(getMaxHealth()+5);
+        setLevel(getLevel() + 1);
+        getAttributes().add(3, 2, 1);
+        setMaxHealth(getMaxHealth() + 5);
         resetHealth();
     }
 

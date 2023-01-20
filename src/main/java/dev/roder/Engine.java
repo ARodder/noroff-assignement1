@@ -39,8 +39,13 @@ public class Engine {
     }
 
     /**
-     * This method fills the availableDrops array with different items
-     * that can be dropped when the player wins a battle.
+     * 
+     * This method fills the availableDrops list with various pieces of armor and
+     * weapons.
+     * It includes head, body, and leg armor of the types cloth, leather, and mail,
+     * each with different attributes.
+     * It also includes weapons of the types staff, bow, and sword, each with
+     * different attributes.
      */
     private void fillAvailableDrops() {
         // Different pieces of head armor.
@@ -252,13 +257,16 @@ public class Engine {
     public void arenaLoop() {
         boolean inBattle = true;
         enemy = availableEnemies.get(random.nextInt(0, availableEnemies.size()));
-        System.out.println("You, \u001B[32m"+hero.getName()+"(lvl."+hero.getLevel()+")"+"\u001B[0m are now fighting \u001B[31m"+enemy.getName()+"(lvl."+enemy.getLevel()+")"+"\u001B[0m");
+        System.out.println("You, \u001B[32m" + hero.getName() + "(lvl." + hero.getLevel() + ")"
+                + "\u001B[0m are now fighting \u001B[31m" + enemy.getName() + "(lvl." + enemy.getLevel() + ")"
+                + "\u001B[0m");
 
         while (inBattle) {
             System.out.println("Your HP [ " + roundAvoid(hero.getHealth(), 2) + "/" + hero.getMaxHealth() + " ]");
             System.out.println("Enemy HP [ " + roundAvoid(enemy.getHealth(), 2) + "/" + enemy.getMaxHealth() + " ]");
-            System.out.println("1. Do a light attack, potentially dealing " + roundAvoid(hero.damage(),2) + " damage");
-            System.out.println("2. Do a heavy attack, potentially dealing " + roundAvoid(hero.damage() * 1.5,2) + " damage");
+            System.out.println("1. Do a light attack, potentially dealing " + roundAvoid(hero.damage(), 2) + " damage");
+            System.out.println(
+                    "2. Do a heavy attack, potentially dealing " + roundAvoid(hero.damage() * 1.5, 2) + " damage");
             System.out.println("3. Heal, regaining 1-3 HP");
             System.out.println("4. Forfeit, and give up the win");
             createSpacing();
@@ -318,14 +326,14 @@ public class Engine {
     public void doCombatAction(int playerChoice) {
         // Determines teh enemy's type of attack
         int enemyChoice = getEnemyChoice();
-        //Probability of hitting a light attack is 90%
+        // Probability of hitting a light attack is 90%
         float lightHitProbability = 0.9f;
-        //Probability of hitting a heavy attack is 75%
+        // Probability of hitting a heavy attack is 75%
         float heavyHitProbability = 0.75f;
-        //float used to determine if the hero hits the enemy
-        float heroHitPoint = random.nextFloat(0,1);
-        //Float used to determine if the enemy hits the hero
-        float enemyHitPoint = random.nextFloat(0,1);
+        // float used to determine if the hero hits the enemy
+        float heroHitPoint = random.nextFloat(0, 1);
+        // Float used to determine if the enemy hits the hero
+        float enemyHitPoint = random.nextFloat(0, 1);
 
         // Applies the logic for the player action
         playerAction(playerChoice, lightHitProbability, heavyHitProbability, heroHitPoint);
@@ -421,6 +429,17 @@ public class Engine {
         System.out.println();
     }
 
+    /**
+     * 
+     * This method generates a random drop from the list of available drops and
+     * attempts to equip it to the hero.
+     * If the drop is an instance of Armor, it will be casted to Armor and equipped
+     * using the equip method of the hero.
+     * If the drop is an instance of Weapon, it will be casted to Weapon and
+     * equipped using the equip method of the hero.
+     * If an exception is thrown, a message indicating that the hero cannot equip
+     * the item will be displayed.
+     */
     private void generateDrop() {
         try {
             Equipable newGear = availableDrops.get(random.nextInt(0, availableDrops.size()));
@@ -452,10 +471,11 @@ public class Engine {
     /**
      * Sets each available enemy to a new random level between 1 and 15.
      */
-    public void setEnemyLevels(){
-        availableEnemies.forEach((character)-> {
-            int characterLvl = random.nextInt(0,3);
-            for (int i = 0; i <characterLvl;i++) character.levelUp();
+    public void setEnemyLevels() {
+        availableEnemies.forEach((character) -> {
+            int characterLvl = random.nextInt(0, 3);
+            for (int i = 0; i < characterLvl; i++)
+                character.levelUp();
         });
     }
 }
